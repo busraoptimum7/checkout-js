@@ -33,6 +33,7 @@
     "test-mocks": "packages/test-mocks",
     "test-utils": "packages/test-utils",
     "ui": "packages/ui",
+    "opt7": "packages/opt7",
     "workspace-tools": "packages/workspace-tools"
   }
 }

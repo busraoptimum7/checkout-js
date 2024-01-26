@@ -1,0 +1,23 @@
+{
+  "root": "packages/opt7",
+  "sourceRoot": "packages/opt7/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/opt7/**/*.{ts,tsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/opt7"],
+      "options": {
+        "jestConfig": "packages/opt7/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["scope:integration"]
+}
