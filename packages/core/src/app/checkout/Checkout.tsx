@@ -49,7 +49,6 @@ import CheckoutStepType from './CheckoutStepType';
 import CheckoutSupport from './CheckoutSupport';
 import mapToCheckoutProps from './mapToCheckoutProps';
 import navigateToOrderConfirmation from './navigateToOrderConfirmation';
-import Opt7ToastifyContainer from '../../../../opt7/src/ToastMessage';
 
 const Billing = lazy(() =>
   retry(
@@ -96,7 +95,7 @@ const Shipping = lazy(() =>
     () =>
       import(
         /* webpackChunkName: "shipping" */
-        '../shipping/Shipping'
+        '../../../../opt7/src/FFLShipping/index'
         ),
   ),
 );
@@ -434,32 +433,11 @@ class Checkout extends Component<
         if (!cart) {
             return;
         }
-        let isWeaponCategoryStatus = false;
-        let otherCategory = false;
 
-        this.props.cart?.lineItems.physicalItems.forEach(item => {
-            const hasWeaponsCategory = item.categoryNames?.some(cname => cname.includes('Weapons'));
-
-            if (hasWeaponsCategory) {
-                isWeaponCategoryStatus = true;
-            } else {
-                otherCategory = true;
-            }
-        });
-
-        console.log(otherCategory, isWeaponCategoryStatus, 'guncel');
+        //console.log(otherCategory, isWeaponCategoryStatus, 'guncel');
 
 
         return (
-          <>
-              {isWeaponCategoryStatus && !otherCategory &&  (
-                <>
-                    <Opt7ToastifyContainer toastMessage="You have ffl items in your cart. You can buy this product from the nearest store." />
-                    <div>NEARBY STORE SELECTION AREA </div>
-                </>
-              )}
-
-              {!isWeaponCategoryStatus && otherCategory && (
                 <CheckoutStep
                   {...step}
                   heading={<TranslatedString id="shipping.shipping_heading" />}
@@ -488,51 +466,12 @@ class Checkout extends Component<
                           onToggleMultiShipping={this.handleToggleMultiShipping}
                           onUnhandledError={this.handleUnhandledError}
                           step={step}
+                          isFFL={true}
+                          checkhoutId={this.props.checkoutId}
                         />
                     </LazyContainer>
                 </CheckoutStep>
-              )}
-
-              {isWeaponCategoryStatus && otherCategory && (
-                <>
-                    <Opt7ToastifyContainer toastMessage="You have ffl items in your cart. You can buy this product from the nearest store." />
-                    <div>NEARBY STORE SELECTION AREA </div>
-                    <CheckoutStep
-                      {...step}
-                      heading={<TranslatedString id="shipping.shipping_heading" />}
-                      key={step.type}
-                      onEdit={this.handleEditStep}
-                      onExpanded={this.handleExpanded}
-                      summary={consignments.map((consignment) => (
-                        <div className="staticConsignmentContainer" key={consignment.id}>
-                            <StaticConsignment
-                              cart={cart}
-                              compactView={consignments.length < 2}
-                              consignment={consignment}
-                            />
-                        </div>
-                      ))}
-                    >
-                        <LazyContainer loadingSkeleton={<AddressFormSkeleton />}>
-                            <Shipping
-                              cartHasChanged={hasCartChanged}
-                              isBillingSameAsShipping={isBillingSameAsShipping}
-                              isMultiShippingMode={isMultiShippingMode}
-                              navigateNextStep={this.handleShippingNextStep}
-                              onCreateAccount={this.handleShippingCreateAccount}
-                              onReady={this.handleReady}
-                              onSignIn={this.handleShippingSignIn}
-                              onToggleMultiShipping={this.handleToggleMultiShipping}
-                              onUnhandledError={this.handleUnhandledError}
-                              step={step}
-                            />
-                        </LazyContainer>
-                    </CheckoutStep>
-                </>
-              )}
-          </>
         );
-
 
     }
 

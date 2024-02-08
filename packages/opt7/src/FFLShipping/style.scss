@@ -1,0 +1,119 @@
+.opt7-ffl {
+    &-information {
+        color: #856404;
+        background-color: #FFF3CD;
+        border-color: #FFEEBA;
+        position: relative;
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+        text-align: center;
+    }
+
+    &-dealer {
+        &-list {
+            margin-top: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        &-item {
+            padding: 1rem;
+            border: solid 1px #DBDBDB;
+            border-radius: .25rem;
+        }
+    }
+
+    &-products {
+        margin: 12px 12px 0 12px;
+
+        &-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+
+            .opt7-ffl-product {
+                display: flex;
+                align-items: center;
+                border: solid 1px #DBDBDB;
+                padding: 6px;
+                border-radius: .25rem;
+                flex: 1;
+
+                img {
+                    width: 70px;
+                    height: 70px;
+                    object-fit: scale-down;
+                    margin-right: 6px;
+                }
+
+                .product-name {
+                    font-weight: 600;
+                    margin-bottom: 0;
+                }
+
+                .product-sale-area {
+                    display: flex;
+                    gap: 4px;
+
+                    p {
+                        font-size: 12px;
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    &-container {
+        margin-top: 22px;
+    }
+
+    &-dealer {
+        &-container {
+            margin-top: 22px;
+            border: solid 1px #DBDBDB;
+            border-radius: .25rem;
+        }
+
+        &-title {
+            padding: 1rem;
+            background: #f5f5f5;
+
+            h4 {
+                margin: 0;
+            }
+        }
+
+        &-body {
+            padding: 1rem;
+        }
+
+        &-header {
+            border-bottom: solid 1px #DBDBDB;
+        }
+
+        &-input-area {
+            display: flex;
+            gap: 12px;
+            padding-bottom: 1rem;
+
+            input,
+            select {
+                height: 40px;
+                border: solid 1px #DBDBDB;
+                border-radius: .25rem;
+                padding: 10px;
+                width: 210px;
+            }
+
+            button {
+                background: #3750b2;
+                color: #FFF;
+                width: 154px;
+                border-radius: .25rem;
+            }
+        }
+    }
+}
